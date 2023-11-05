@@ -8,7 +8,7 @@ const SocialLogin = () => {
         <span className="text-center">OR</span>
         <hr className="flex-1" />
       </div>
-      <button className="w-full border hover:border-red-500 transition-all duration-300 p-2 rounded font-medium flex items-center justify-center gap-1">
+      <button className="w-full border hover:border-[#b99d75] transition-all duration-500 p-2 rounded font-medium flex items-center justify-center gap-1">
         <FcGoogle className="text-2xl" />
         <span>Continue With Google</span>
       </button>
