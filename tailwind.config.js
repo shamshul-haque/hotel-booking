@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        barlow: "'Barlow', sans-serif",
+        marcellus: "'Marcellus', serif",
       },
       colors: {
         primary: "#53624e",
