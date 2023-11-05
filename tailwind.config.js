@@ -6,6 +6,10 @@ export default {
       fontFamily: {
         barlow: "'Barlow', sans-serif",
       },
+      colors: {
+        primary: "#53624e",
+        secondary: "#b99d75",
+      },
     },
   },
   plugins: [require("daisyui")],

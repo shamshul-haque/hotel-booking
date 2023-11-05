@@ -31,12 +31,12 @@ const Login = () => {
                 <input type="checkbox" name="terms" />
                 <span className="text-sm">Remember Me</span>
               </p>
-              <Link to="#" className="text-sm text-[#b99d75] hover:underline">
+              <Link to="#" className="text-sm text-secondary hover:underline">
                 Forgot Password
               </Link>
             </div>
             <div className="form-control">
-              <button className="bg-[#53624e] hover:bg-[#b99d75] transition-all duration-500 p-2 rounded uppercase text-white font-medium">
+              <button className="bg-primary hover:bg-secondary transition-all duration-500 p-2 rounded uppercase text-white font-medium">
                 Login
               </button>
             </div>
@@ -45,7 +45,7 @@ const Login = () => {
             <span>{`Don't Have Account?`}</span>{" "}
             <Link
               to="/register"
-              className="text-[#b99d75] hover:underline font-medium"
+              className="text-secondary hover:underline font-medium"
             >
               Create
             </Link>

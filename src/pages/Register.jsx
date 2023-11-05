@@ -50,13 +50,13 @@ const Register = () => {
               <input type="checkbox" name="check" required />
               <Link to="#" className="text-sm">
                 Accept{" "}
-                <span className="text-[#b99d75] hover:underline">
+                <span className="text-secondary hover:underline">
                   Terms and Conditions
                 </span>
               </Link>
             </div>
             <div className="form-control">
-              <button className="bg-[#53624e] hover:bg-[#b99d75] transition-all duration-500 p-2 rounded uppercase text-white font-medium">
+              <button className="bg-primary hover:bg-secondary transition-all duration-500 p-2 rounded uppercase text-white font-medium">
                 Register
               </button>
             </div>
@@ -65,7 +65,7 @@ const Register = () => {
             <span>Have An Account?</span>{" "}
             <Link
               to="/login"
-              className="text-[#b99d75] hover:underline font-medium"
+              className="text-secondary hover:underline font-medium"
             >
               Login
             </Link>
