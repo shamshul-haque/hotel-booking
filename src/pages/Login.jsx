@@ -1,13 +1,44 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import SocialLogin from "../components/socialLogin/SocialLogin";
+import useAuth from "../hooks/useAuth";
 
 const Login = () => {
+  const { loginUser } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    const form = new FormData(e.currentTarget);
+    const email = form.get("email");
+    const password = form.get("password");
+    e.currentTarget.reset();
+
+    loginUser(email, password)
+      .then((result) => {
+        if (result.user) {
+          navigate("/");
+        }
+        toast.success("Login successfully!", {
+          position: "top-center",
+          theme: "colored",
+        });
+      })
+      .catch(() => {
+        toast.error("Please provide correct email and password!", {
+          position: "top-center",
+          theme: "colored",
+        });
+      });
+  };
+
   return (
     <div className="py-10">
       <div className="flex flex-col items-center">
         <div className="w-full max-w-sm border rounded p-5">
           <h1 className="text-2xl font-bold text-center uppercase">Login</h1>
-          <form className="mt-5 space-y-5">
+          <form onSubmit={handleLogin} className="mt-5 space-y-5">
             <div className="form-control">
               <input
                 type="email"

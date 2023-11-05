@@ -1,6 +1,27 @@
 import { AiOutlineMenu } from "react-icons/ai";
 import { Link, NavLink } from "react-router-dom";
+import { toast } from "react-toastify";
+import useAuth from "../../hooks/useAuth";
+
 const DropdownManus = () => {
+  const { user, logoutUser } = useAuth();
+
+  const handleLogout = () => {
+    logoutUser()
+      .then(() => {
+        toast.success("Logout successfully!", {
+          position: "top-center",
+          theme: "colored",
+        });
+      })
+      .catch((error) => {
+        toast.error(error.code, {
+          position: "top-center",
+          theme: "colored",
+        });
+      });
+  };
+
   return (
     <div className="dropdown dropdown-end">
       <label tabIndex={0} className="btn m-1">
@@ -8,8 +29,18 @@ const DropdownManus = () => {
       </label>
       <div
         tabIndex={0}
-        className="dropdown-content p-5 shadow bg-base-100 rounded-box"
+        className="dropdown-content p-5 w-40 shadow bg-base-100 rounded-box"
       >
+        {user && (
+          <div className="space-y-1">
+            <img
+              src={user?.photoURL}
+              alt={user?.displayName}
+              className="w-10 h-10 rounded-full mx-auto"
+            />
+            <p className="font-medium text-center">{user?.displayName}</p>
+          </div>
+        )}
         <div className="flex flex-col">
           <NavLink
             to="/"
@@ -43,12 +74,22 @@ const DropdownManus = () => {
           </NavLink>
         </div>
         <div className="mt-5 flex justify-center">
-          <Link
-            to="/login"
-            className="bg-primary hover:bg-secondary transition-all duration-500 p-2 rounded uppercase text-white font-medium"
-          >
-            Login
-          </Link>
+          {user ? (
+            <Link
+              to="/login"
+              onClick={handleLogout}
+              className="bg-primary hover:bg-secondary transition-all duration-500 p-2 rounded uppercase text-white font-medium"
+            >
+              Logout
+            </Link>
+          ) : (
+            <Link
+              to="/login"
+              className="bg-primary hover:bg-secondary transition-all duration-500 p-2 rounded uppercase text-white font-medium"
+            >
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </div>
