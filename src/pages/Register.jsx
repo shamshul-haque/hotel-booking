@@ -3,7 +3,7 @@ import SocialLogin from "../components/socialLogin/SocialLogin";
 
 const Register = () => {
   return (
-    <div className="mx-4 md:mx-8 lg:mx-16">
+    <div className="py-10">
       <div className="flex flex-col items-center">
         <div className="w-full max-w-sm border rounded p-5">
           <h1 className="text-2xl font-bold text-center uppercase">
@@ -62,7 +62,7 @@ const Register = () => {
             </div>
           </form>
           <p className="text-sm text-center pt-5">
-            <span>Have An Account?</span>{" "}
+            <span>Have An Account? </span>
             <Link
               to="/login"
               className="text-secondary hover:underline font-medium"
