@@ -2,32 +2,37 @@ import { FcGoogle } from "react-icons/fc";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import useAuth from "../../hooks/useAuth";
+import useAxios from "../../hooks/useAxios";
 
 const SocialLogin = () => {
   const { googleLogin } = useAuth();
+  const axios = useAxios();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from || "/";
 
-  const handleGoogleLogin = () => {
-    googleLogin()
-      .then((result) => {
-        if (result.user) {
-          navigate(from, {
-            replace: true,
-          });
-        }
-        toast.success("Login successfully!", {
-          position: "top-center",
-          theme: "colored",
-        });
-      })
-      .catch((error) => {
-        toast.success(error.code, {
-          position: "top-center",
-          theme: "colored",
-        });
+  const handleGoogleLogin = async () => {
+    try {
+      const user = await googleLogin();
+      await axios.post("/auth/access-token", {
+        email: user?.user?.email,
       });
+
+      if (user) {
+        navigate(from, {
+          replace: true,
+        });
+      }
+      toast.success("Login successfully!", {
+        position: "top-center",
+        theme: "colored",
+      });
+    } catch {
+      toast.error("Please provide correct email and password!", {
+        position: "top-center",
+        theme: "colored",
+      });
+    }
   };
 
   return (
