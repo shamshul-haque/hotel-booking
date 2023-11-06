@@ -1,9 +1,10 @@
 import Mapping from "../components/mapping/Mapping";
+import Subscribe from "../components/subscribe/Subscribe";
 
 const Home = () => {
   return (
     <div>
-      <p>Home</p>
+      <Subscribe />
       <Mapping />
     </div>
   );
