@@ -3,10 +3,10 @@ import Title from "../sectionTitle/Title";
 
 const Mapping = () => {
   return (
-    <div className="pt-10">
-      <Title>Mapping</Title>
-      <Map height={300} defaultCenter={[23.82235, 90.365417]} defaultZoom={11}>
-        <Marker width={50} anchor={[23.82235, 90.365417]} />
+    <div className="py-10">
+      <Title>Find Us on the Map</Title>
+      <Map height={400} defaultCenter={[21.421, 91.9763]} defaultZoom={8}>
+        <Marker width={50} anchor={[21.421, 91.9763]} />
       </Map>
     </div>
   );
