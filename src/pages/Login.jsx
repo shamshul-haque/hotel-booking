@@ -2,14 +2,16 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import SocialLogin from "../components/socialLogin/SocialLogin";
 import useAuth from "../hooks/useAuth";
+import useAxios from "../hooks/useAxios";
 
 const Login = () => {
   const { loginUser } = useAuth();
+  const axios = useAxios();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from || "/";
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
     const form = new FormData(e.currentTarget);
@@ -17,24 +19,27 @@ const Login = () => {
     const password = form.get("password");
     e.currentTarget.reset();
 
-    loginUser(email, password)
-      .then((result) => {
-        if (result.user) {
-          navigate(from, {
-            replace: true,
-          });
-        }
-        toast.success("Login successfully!", {
-          position: "top-center",
-          theme: "colored",
-        });
-      })
-      .catch(() => {
-        toast.error("Please provide correct email and password!", {
-          position: "top-center",
-          theme: "colored",
-        });
+    try {
+      const user = await loginUser(email, password);
+      await axios.post("/auth/access-token", {
+        email: user?.user?.email,
       });
+
+      if (user) {
+        navigate(from, {
+          replace: true,
+        });
+      }
+      toast.success("Login successfully!", {
+        position: "top-center",
+        theme: "colored",
+      });
+    } catch {
+      toast.error("Please provide correct email and password!", {
+        position: "top-center",
+        theme: "colored",
+      });
+    }
   };
 
   return (
