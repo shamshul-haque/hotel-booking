@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import SocialLogin from "../components/socialLogin/SocialLogin";
 import useAuth from "../hooks/useAuth";
@@ -6,6 +6,8 @@ import useAuth from "../hooks/useAuth";
 const Login = () => {
   const { loginUser } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from || "/";
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -18,7 +20,9 @@ const Login = () => {
     loginUser(email, password)
       .then((result) => {
         if (result.user) {
-          navigate("/");
+          navigate(from, {
+            replace: true,
+          });
         }
         toast.success("Login successfully!", {
           position: "top-center",
