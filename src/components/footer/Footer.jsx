@@ -50,7 +50,7 @@ const Footer = () => {
                     Our Story
                   </Link>
                   <Link
-                    to="#"
+                    to="/contact"
                     className="hover:text-secondary transition-all duration-500"
                   >
                     Contact Us

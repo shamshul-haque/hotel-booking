@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Error from "../errorHandling/Error";
 import MainLayout from "../layouts/MainLayout";
+import Contact from "../pages/Contact";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import MyBookings from "../pages/MyBookings";
@@ -25,7 +26,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/roomDetails",
-        element: <RoomDetails />,
+        element: (
+          <PrivateRoutes>
+            <RoomDetails />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/my-bookings",
@@ -42,6 +47,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
       },
     ],
   },
