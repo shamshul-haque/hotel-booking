@@ -1,10 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
+import moment from "moment";
+import { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { FaCalendarAlt } from "react-icons/fa";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import useAuth from "../hooks/useAuth";
 import useAxios from "../hooks/useAxios";
 
 const RoomDetails = () => {
   const { id } = useParams();
   const axios = useAxios();
+  const { user } = useAuth();
+  const [selectDate, setSelectDate] = useState(new Date());
 
   const getRoomDetails = async () => {
     return await axios.get(`/rooms/${id}`);
@@ -35,6 +44,24 @@ const RoomDetails = () => {
       </div>
     );
   }
+
+  const handleBooking = async (e) => {
+    e.preventDefault();
+    const date = moment(selectDate).format("YYYY-MM-D");
+    const email = user?.email;
+    const image = item?.data?.img;
+    const bookingDetails = { date, email, image };
+
+    try {
+      await axios.post("/user/create-booking", bookingDetails);
+      toast.success("Booking successful!", {
+        position: "top-center",
+        theme: "colored",
+      });
+    } catch {
+      console.log("error");
+    }
+  };
 
   return (
     <div className="bg-white rounded shadow-md flex flex-col md:flex-row items-center gap-10 my-10">
@@ -67,22 +94,29 @@ const RoomDetails = () => {
           <p>
             <span className="font-bold">Available Seats:</span>
             <span className="bg-primary px-2 text-white rounded ml-1">
-              {item.data.available_seats}
+              {item?.data?.available_seats}
             </span>
           </p>
         </div>
-        <form className="flex justify-center gap-5">
-          <input
-            type="date"
-            name="date"
-            placeholder="Password"
-            className="outline-0 border p-2 rounded text-sm"
-            required
-          />
-          <button className="bg-primary hover:bg-secondary transition-all duration-500 p-2 rounded uppercase text-white font-medium">
-            Book Now
-          </button>
-        </form>
+        <div>
+          {item?.data?.available_seats === 0 ? (
+            <p className="text-red-400 text-center">Seats are not available!</p>
+          ) : (
+            <div onClick={handleBooking} className="flex justify-center gap-5">
+              <label className="flex items-center border border-primary hover:border-secondary rounded cursor-pointer px-3">
+                <DatePicker
+                  selected={selectDate}
+                  onChange={(date) => setSelectDate(date)}
+                  className="outline-0 border-none"
+                />
+                <FaCalendarAlt />
+              </label>
+              <button className="bg-primary hover:bg-secondary transition-all duration-500 p-2 rounded uppercase text-white font-medium">
+                Book Now
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
