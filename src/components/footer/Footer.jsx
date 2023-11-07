@@ -65,7 +65,7 @@ const Footer = () => {
                     to="#"
                     className="hover:text-secondary transition-all duration-500"
                   >
-                    Bog
+                    FAQ
                   </Link>
                   <Link
                     to="#"

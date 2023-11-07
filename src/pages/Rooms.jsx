@@ -55,7 +55,7 @@ const Rooms = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
         {rooms?.data.map((item) => (
-          <RoomCard key={item._id} room={item} />
+          <RoomCard key={item._id} item={item} />
         ))}
       </div>
     </div>

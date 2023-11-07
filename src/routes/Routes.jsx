@@ -25,7 +25,7 @@ const router = createBrowserRouter([
         element: <Rooms />,
       },
       {
-        path: "/roomDetails",
+        path: "/roomDetails/:id",
         element: (
           <PrivateRoutes>
             <RoomDetails />
