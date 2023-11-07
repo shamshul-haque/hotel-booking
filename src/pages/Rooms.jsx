@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import reception from "../assets/images/reception.jpg";
 import RoomCard from "../components/roomCard/RoomCard";
 import useAxios from "../hooks/useAxios";
 
@@ -36,10 +37,27 @@ const Rooms = () => {
   }
 
   return (
-    <div>
-      {rooms?.data.map((item) => (
-        <RoomCard key={item._id} room={item} />
-      ))}
+    <div className="py-10">
+      <img
+        src={reception}
+        alt="reception"
+        className="h-[80vh] w-full rounded"
+      />
+      <div className="text-center my-5 space-y-1">
+        <h1 className="text-xl md:text-2xl font-bold uppercase">
+          Welcome to Luxe Haven
+        </h1>
+        <p className="lg:px-32 text-sm md:text-base">
+          Step into the world of pure indulgence at Luxe Haven. Our hotel
+          redefines luxury with exquisite accommodations, impeccable service,
+          and a haven of tranquility. Experience the epitome of opulence.
+        </p>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        {rooms?.data.map((item) => (
+          <RoomCard key={item._id} room={item} />
+        ))}
+      </div>
     </div>
   );
 };
