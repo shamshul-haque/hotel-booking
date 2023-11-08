@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import { AiFillMail } from "react-icons/ai";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { GoLocation } from "react-icons/go";
@@ -18,6 +19,9 @@ const Contact = () => {
   };
   return (
     <div className="py-10">
+      <Helmet>
+        <title>Contact Us | The Luxe Haven</title>
+      </Helmet>
       <h1 className="text-3xl md:text-4xl lg:text-5xl text-center font-bold text-black">
         Contact With Us
       </h1>

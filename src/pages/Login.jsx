@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import SocialLogin from "../components/socialLogin/SocialLogin";
@@ -48,6 +49,9 @@ const Login = () => {
 
   return (
     <div className="py-10">
+      <Helmet>
+        <title>Login | The Luxe Haven</title>
+      </Helmet>
       <div className="flex flex-col items-center">
         <div className="w-full max-w-sm border rounded p-5">
           <h1 className="text-2xl font-bold text-center uppercase">Login</h1>

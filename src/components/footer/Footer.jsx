@@ -44,28 +44,22 @@ const Footer = () => {
                 <h2 className="text-3xl font-bold">About Us</h2>
                 <div className="flex flex-col mt-5 md:mt-10 space-y-3">
                   <Link
-                    to="#"
-                    className="hover:text-secondary transition-all duration-500"
-                  >
-                    Our Story
-                  </Link>
-                  <Link
                     to="/contact"
                     className="hover:text-secondary transition-all duration-500"
                   >
                     Contact Us
                   </Link>
                   <Link
-                    to="#"
+                    to="/faqs"
                     className="hover:text-secondary transition-all duration-500"
                   >
-                    Career
+                    FAQ
                   </Link>
                   <Link
                     to="#"
                     className="hover:text-secondary transition-all duration-500"
                   >
-                    FAQ
+                    Career
                   </Link>
                 </div>
               </div>

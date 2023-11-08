@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet";
 import reception from "../assets/images/reception.jpg";
 import RoomCard from "../components/roomCard/RoomCard";
 import useAxios from "../hooks/useAxios";
@@ -38,6 +39,9 @@ const Rooms = () => {
 
   return (
     <div className="py-10">
+      <Helmet>
+        <title>Rooms | The Luxe Haven</title>
+      </Helmet>
       <img
         src={reception}
         alt="reception"

@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Helmet } from "react-helmet";
 import { FaCalendarAlt } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -65,6 +66,9 @@ const RoomDetails = () => {
 
   return (
     <div className="bg-white rounded shadow-md flex flex-col md:flex-row items-center gap-10 my-10">
+      <Helmet>
+        <title>Room Details | The Luxe Haven</title>
+      </Helmet>
       <div className="flex-1">
         <img
           src={item?.data?.img}
@@ -91,34 +95,22 @@ const RoomDetails = () => {
             <span className="font-bold">Special Offers: </span>
             {item?.data?.special_offers}
           </p>
-          <p>
-            <span className="font-bold">Available Seats:</span>
-            <span className="bg-primary px-2 text-white rounded ml-1">
-              {item?.data?.available_seats}
-            </span>
-          </p>
         </div>
-        <div>
-          {item?.data?.available_seats === 0 ? (
-            <p className="text-red-400 text-center">Seats are not available!</p>
-          ) : (
-            <div className="flex justify-center gap-5">
-              <label className="flex items-center border border-primary hover:border-secondary rounded cursor-pointer px-3">
-                <DatePicker
-                  selected={selectDate}
-                  onChange={(date) => setSelectDate(date)}
-                  className="outline-0 border-none"
-                />
-                <FaCalendarAlt />
-              </label>
-              <button
-                onClick={handleBooking}
-                className="bg-primary hover:bg-secondary transition-all duration-500 p-2 rounded uppercase text-white font-medium"
-              >
-                Book Now
-              </button>
-            </div>
-          )}
+        <div className="flex justify-center gap-5">
+          <label className="flex items-center border border-primary hover:border-secondary rounded cursor-pointer px-3">
+            <DatePicker
+              selected={selectDate}
+              onChange={(date) => setSelectDate(date)}
+              className="outline-0 border-none"
+            />
+            <FaCalendarAlt />
+          </label>
+          <button
+            onClick={handleBooking}
+            className="bg-primary hover:bg-secondary transition-all duration-500 p-2 rounded uppercase text-white font-medium"
+          >
+            Book Now
+          </button>
         </div>
       </div>
     </div>

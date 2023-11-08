@@ -1,4 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
+import moment from "moment/moment";
+import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
@@ -40,24 +42,6 @@ const MyBookings = () => {
   }
 
   const handleDelete = (id) => {
-    // const currentDate = new Date();
-    // const bookingDate = bookings?.data?.find((date) => date.date);
-    // const dayDifference = Math.floor(
-    //   (currentDate - bookingDate.date) / (1000 * 60 * 60 * 24)
-    // );
-    // console.log(currentDate);
-    // console.log(bookingDate.date);
-    // console.log(dayDifference);
-
-    const dateStr1 = "2023-11-8"; //cancel date
-    const dateStr2 = "2023-11-11"; //booking date
-    const date1 = new Date(dateStr1);
-    const date2 = new Date(dateStr2);
-    const dayDifference = Math.floor((date2 - date1) / (1000 * 60 * 60 * 24));
-    console.log(date1);
-    console.log(date2);
-    console.log(dayDifference);
-
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -68,6 +52,9 @@ const MyBookings = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
+        //   axios
+        // .delete(`/user/cancel-booking/${id}`)
+        // .then((res) => console.log(res.data));
         const deleteItem = async () => {
           const res = await axios.delete(`/user/cancel-booking/${id}`);
           if (res.data.deletedCount > 0) {
@@ -82,6 +69,9 @@ const MyBookings = () => {
 
   return (
     <div className="py-10 w-full lg:w-2/3 mx-auto">
+      <Helmet>
+        <title>My Booking | The Luxe Haven</title>
+      </Helmet>
       {bookings?.data?.map((item) => (
         <div
           key={item._id}
@@ -97,7 +87,7 @@ const MyBookings = () => {
               {item.name}
             </p>
             <p className="text-xs md:text-base text-center">
-              Booking for: {item.date}
+              Booking for: {moment(item.date).format("MMM Do YY")}
             </p>
           </div>
           <div className="flex flex-col gap-2">
