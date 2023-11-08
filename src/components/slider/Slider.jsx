@@ -26,13 +26,13 @@ const Slider = () => {
               backgroundRepeat: "no-repeat",
               backgroundSize: "cover",
             }}
-            className="h-[70vh] flex items-center"
+            className="h-[80vh] flex items-center"
           >
             <div className="text-center text-white space-y-5">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
+              <h2 className="text-2xl font-bold text-white p-5 md:p-0">
                 WELCOME TO LUXE HAVEN
               </h2>
-              <p className="px-20 pb-10">
+              <p className="px-20 pb-10 hidden md:block">
                 Step into the world of pure indulgence at Luxe Haven. Our hotel
                 redefines luxury with exquisite accommodations, impeccable
                 service, and a haven of tranquility. Experience the epitome of
@@ -54,13 +54,13 @@ const Slider = () => {
               backgroundRepeat: "no-repeat",
               backgroundSize: "cover",
             }}
-            className="h-[70vh] flex items-center"
+            className="h-[80vh] flex items-center"
           >
             <div className="text-center space-y-5">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
+              <h2 className="text-2xl font-bold text-white p-5 md:p-0">
                 Select Your Room Today!
               </h2>
-              <p className="px-20 pb-10">
+              <p className="px-20 pb-10 hidden md:block">
                 Step into the world of pure indulgence at Luxe Haven. Our hotel
                 redefines luxury with exquisite accommodations, impeccable
                 service, and a haven of tranquility. Experience the epitome of
