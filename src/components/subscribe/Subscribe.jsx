@@ -12,7 +12,7 @@ const Subscribe = () => {
     });
   };
   return (
-    <div className="rounded">
+    <div className="rounded mt-10">
       <div
         className="hero rounded"
         style={{

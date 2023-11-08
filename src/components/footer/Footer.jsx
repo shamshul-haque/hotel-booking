@@ -67,12 +67,6 @@ const Footer = () => {
                   >
                     FAQ
                   </Link>
-                  <Link
-                    to="#"
-                    className="hover:text-secondary transition-all duration-500"
-                  >
-                    Premium Service
-                  </Link>
                 </div>
               </div>
               <div className="flex-1 mt-5">

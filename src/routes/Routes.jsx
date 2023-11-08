@@ -8,6 +8,7 @@ import MyBookings from "../pages/MyBookings";
 import Register from "../pages/Register";
 import RoomDetails from "../pages/RoomDetails";
 import Rooms from "../pages/Rooms";
+import UpdateBooking from "../pages/UpdateBooking";
 import PrivateRoutes from "./PrivateRoutes";
 
 const router = createBrowserRouter([
@@ -37,6 +38,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoutes>
             <MyBookings />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/update-bookings/:id",
+        element: (
+          <PrivateRoutes>
+            <UpdateBooking />
           </PrivateRoutes>
         ),
       },

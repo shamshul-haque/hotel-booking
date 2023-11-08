@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import moment from "moment";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -47,10 +46,11 @@ const RoomDetails = () => {
 
   const handleBooking = async (e) => {
     e.preventDefault();
-    const date = moment(selectDate).format("YYYY-MM-D");
+    const date = new Date(selectDate);
     const email = user?.email;
     const image = item?.data?.img;
-    const bookingDetails = { date, email, image };
+    const name = item?.data?.name;
+    const bookingDetails = { date, email, image, name };
 
     try {
       await axios.post("/user/create-booking", bookingDetails);
@@ -102,7 +102,7 @@ const RoomDetails = () => {
           {item?.data?.available_seats === 0 ? (
             <p className="text-red-400 text-center">Seats are not available!</p>
           ) : (
-            <div onClick={handleBooking} className="flex justify-center gap-5">
+            <div className="flex justify-center gap-5">
               <label className="flex items-center border border-primary hover:border-secondary rounded cursor-pointer px-3">
                 <DatePicker
                   selected={selectDate}
@@ -111,7 +111,10 @@ const RoomDetails = () => {
                 />
                 <FaCalendarAlt />
               </label>
-              <button className="bg-primary hover:bg-secondary transition-all duration-500 p-2 rounded uppercase text-white font-medium">
+              <button
+                onClick={handleBooking}
+                className="bg-primary hover:bg-secondary transition-all duration-500 p-2 rounded uppercase text-white font-medium"
+              >
                 Book Now
               </button>
             </div>

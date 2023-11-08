@@ -16,7 +16,7 @@ const Rooms = () => {
     isError,
     error,
   } = useQuery({
-    queryKey: ["room"],
+    queryKey: ["rooms"],
     queryFn: getRooms,
   });
 

@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
 import useAxios from "../hooks/useAxios";
@@ -16,8 +17,9 @@ const MyBookings = () => {
     isLoading,
     isError,
     error,
+    refetch,
   } = useQuery({
-    queryKey: ["details"],
+    queryKey: ["bookings"],
     queryFn: getBooking,
   });
 
@@ -38,6 +40,24 @@ const MyBookings = () => {
   }
 
   const handleDelete = (id) => {
+    // const currentDate = new Date();
+    // const bookingDate = bookings?.data?.find((date) => date.date);
+    // const dayDifference = Math.floor(
+    //   (currentDate - bookingDate.date) / (1000 * 60 * 60 * 24)
+    // );
+    // console.log(currentDate);
+    // console.log(bookingDate.date);
+    // console.log(dayDifference);
+
+    const dateStr1 = "2023-11-8"; //cancel date
+    const dateStr2 = "2023-11-11"; //booking date
+    const date1 = new Date(dateStr1);
+    const date2 = new Date(dateStr2);
+    const dayDifference = Math.floor((date2 - date1) / (1000 * 60 * 60 * 24));
+    console.log(date1);
+    console.log(date2);
+    console.log(dayDifference);
+
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -52,6 +72,7 @@ const MyBookings = () => {
           const res = await axios.delete(`/user/cancel-booking/${id}`);
           if (res.data.deletedCount > 0) {
             Swal.fire("Deleted!", "Your item has been deleted.", "success");
+            refetch();
           }
         };
         deleteItem();
@@ -60,41 +81,40 @@ const MyBookings = () => {
   };
 
   return (
-    <div className="overflow-x-auto ">
-      <table className="table w-2/3 mx-auto">
-        <thead>
-          <tr className="text-xs md:text-bases text-center">
-            <th>Photo</th>
-            <th>Date</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {bookings.data.map((item) => (
-            <tr key={item._id} className="text-xs md:text-sm text-center">
-              <td>
-                <img
-                  src={item.image}
-                  alt="bbb"
-                  className="w-32 rounded mx-auto"
-                />
-              </td>
-              <td>{item.date}</td>
-              <td className="">
-                <button className="bg-primary hover:bg-secondary transition-all duration-500 p-2 rounded uppercase text-white font-medium">
-                  Update Date
-                </button>
-                <button
-                  onClick={() => handleDelete(item._id)}
-                  className="bg-primary hover:bg-secondary transition-all duration-500 p-2 rounded uppercase text-white font-medium"
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="py-10 w-full lg:w-2/3 mx-auto">
+      {bookings?.data?.map((item) => (
+        <div
+          key={item._id}
+          className="flex items-center justify-between gap-5 mt-5"
+        >
+          <img
+            src={item.image}
+            alt="booked image"
+            className="w-20 md:w-40 rounded"
+          />
+          <div>
+            <p className="text-xs md:text-base font-bold text-center">
+              {item.name}
+            </p>
+            <p className="text-xs md:text-base text-center">
+              Booking for: {item.date}
+            </p>
+          </div>
+          <div className="flex flex-col gap-2">
+            <Link to={`/update-bookings/${item._id}`}>
+              <button className="bg-primary hover:bg-secondary transition-all duration-500 p-2 rounded uppercase text-white text-xs md:text-base md:font-medium">
+                Update Date
+              </button>
+            </Link>
+            <button
+              onClick={() => handleDelete(item._id)}
+              className="bg-primary hover:bg-secondary transition-all duration-500 p-2 rounded uppercase text-white text-xs md:text-base md:font-medium"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };
