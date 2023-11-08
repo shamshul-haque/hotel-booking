@@ -1,7 +1,14 @@
+import Aos from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 import { toast } from "react-toastify";
 import subscribe from "../../assets/images/subscribe.jpg";
 
 const Subscribe = () => {
+  useEffect(() => {
+    Aos.init({ duration: 2000 });
+  }, []);
+
   const handleSubscription = (e) => {
     e.preventDefault();
     e.currentTarget.reset();
@@ -11,8 +18,9 @@ const Subscribe = () => {
       theme: "colored",
     });
   };
+
   return (
-    <div className="rounded mt-10">
+    <div className="rounded mt-10" data-aos="flip-right">
       <div
         className="hero rounded"
         style={{
