@@ -5,7 +5,7 @@ import useAuth from "../../hooks/useAuth";
 import useAxios from "../../hooks/useAxios";
 
 const SocialLogin = () => {
-  const { googleLogin } = useAuth();
+  const { googleLogin, logoutUser } = useAuth();
   const axios = useAxios();
   const navigate = useNavigate();
   const location = useLocation();
@@ -14,21 +14,25 @@ const SocialLogin = () => {
   const handleGoogleLogin = async () => {
     try {
       const user = await googleLogin();
-      await axios.post("/auth/access-token", {
+      const res = await axios.post("/auth/access-token", {
         email: user?.user?.email,
       });
 
-      if (user) {
-        navigate(from, {
-          replace: true,
+      if (res.data.success) {
+        toast.success("Login successfully!", {
+          position: "top-center",
+          theme: "colored",
         });
+        if (user) {
+          navigate(from, {
+            replace: true,
+          });
+        }
+      } else {
+        logoutUser();
       }
-      toast.success("Login successfully!", {
-        position: "top-center",
-        theme: "colored",
-      });
-    } catch {
-      toast.error("Please provide correct email and password!", {
+    } catch (error) {
+      toast.error(error.code, {
         position: "top-center",
         theme: "colored",
       });
