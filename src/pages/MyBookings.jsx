@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
 import useAxios from "../hooks/useAxios";
 
@@ -36,6 +37,28 @@ const MyBookings = () => {
     );
   }
 
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const deleteItem = async () => {
+          const res = await axios.delete(`/user/cancel-booking/${id}`);
+          if (res.data.deletedCount > 0) {
+            Swal.fire("Deleted!", "Your item has been deleted.", "success");
+          }
+        };
+        deleteItem();
+      }
+    });
+  };
+
   return (
     <div className="overflow-x-auto ">
       <table className="table w-2/3 mx-auto">
@@ -61,7 +84,10 @@ const MyBookings = () => {
                 <button className="bg-primary hover:bg-secondary transition-all duration-500 p-2 rounded uppercase text-white font-medium">
                   Update Date
                 </button>
-                <button className="bg-primary hover:bg-secondary transition-all duration-500 p-2 rounded uppercase text-white font-medium">
+                <button
+                  onClick={() => handleDelete(item._id)}
+                  className="bg-primary hover:bg-secondary transition-all duration-500 p-2 rounded uppercase text-white font-medium"
+                >
                   Delete
                 </button>
               </td>
