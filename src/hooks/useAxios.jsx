@@ -5,7 +5,8 @@ import { toast } from "react-toastify";
 import useAuth from "./useAuth";
 
 const instance = axios.create({
-  baseURL: "https://hotel-booking-server-five.vercel.app",
+  baseURL: "http://localhost:5000/api/v1/",
+  // baseURL: "https://hotel-booking-server-five.vercel.app",
   withCredentials: true,
 });
 

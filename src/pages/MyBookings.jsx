@@ -41,30 +41,37 @@ const MyBookings = () => {
     );
   }
 
-  const handleDelete = (id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        //   axios
-        // .delete(`/user/cancel-booking/${id}`)
-        // .then((res) => console.log(res.data));
-        const deleteItem = async () => {
-          const res = await axios.delete(`/user/cancel-booking/${id}`);
-          if (res.data.deletedCount > 0) {
-            Swal.fire("Deleted!", "Your item has been deleted.", "success");
-            refetch();
-          }
-        };
-        deleteItem();
-      }
-    });
+  const handleDelete = (id, bookingDate) => {
+    const newDate = new Date();
+    const dayDifference = Math.floor(
+      (new Date(bookingDate) - newDate) / (1000 * 60 * 60 * 24)
+    );
+    console.log(dayDifference);
+
+    if (dayDifference > 1) {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const deleteItem = async () => {
+            const res = await axios.delete(`/user/cancel-booking/${id}`);
+            if (res.data.deletedCount > 0) {
+              Swal.fire("Deleted!", "Your item has been deleted.", "success");
+              refetch();
+            }
+          };
+          deleteItem();
+        }
+      });
+    } else {
+      Swal.fire("Cannot Delete", "Cancellation time expired!", "error");
+    }
   };
 
   return (
@@ -97,11 +104,17 @@ const MyBookings = () => {
               </button>
             </Link>
             <button
-              onClick={() => handleDelete(item._id)}
+              onClick={() => handleDelete(item._id, item.date)}
               className="bg-primary hover:bg-secondary transition-all duration-500 p-2 rounded uppercase text-white text-xs md:text-base md:font-medium"
             >
               Delete
             </button>
+            {/* <button
+              onClick={() => handleDelete(item._id)}
+              className="bg-primary hover:bg-secondary transition-all duration-500 p-2 rounded uppercase text-white text-xs md:text-base md:font-medium"
+            >
+              Delete
+            </button> */}
           </div>
         </div>
       ))}

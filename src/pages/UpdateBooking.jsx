@@ -9,11 +9,12 @@ const UpdateBooking = () => {
   const [selectDate, setSelectDate] = useState(new Date());
   const axios = useAxios();
   const { id } = useParams();
-  console.log(id);
 
-  const handleUpdateDate = async () => {
-    return await axios.put(`/api/v1/user/manage-booking/${id}`, {
-      date: selectDate,
+  const handleUpdateDate = async (e) => {
+    e.preventDefault();
+    const date = new Date(selectDate);
+    return await axios.put(`/user/manage-booking/${id}`, {
+      date: date,
     });
   };
 

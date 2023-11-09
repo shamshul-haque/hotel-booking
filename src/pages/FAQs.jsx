@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet";
-import Title from "../../components/sectionTitle/Title";
+import Title from "../components/sectionTitle/Title";
 
 const FAQs = () => {
   return (

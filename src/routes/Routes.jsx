@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Error from "../errorHandling/Error";
 import MainLayout from "../layouts/MainLayout";
 import Contact from "../pages/Contact";
+import FAQs from "../pages/FAQs";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import MyBookings from "../pages/MyBookings";
@@ -9,7 +10,6 @@ import Register from "../pages/Register";
 import RoomDetails from "../pages/RoomDetails";
 import Rooms from "../pages/Rooms";
 import UpdateBooking from "../pages/UpdateBooking";
-import FAQs from "../pages/faq/FAQs";
 import PrivateRoutes from "./PrivateRoutes";
 
 const router = createBrowserRouter([
