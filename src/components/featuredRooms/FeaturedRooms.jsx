@@ -1,4 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
+import Aos from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/autoplay";
@@ -9,6 +12,10 @@ import useAxios from "../../hooks/useAxios";
 
 const FeaturedRooms = () => {
   const axios = useAxios();
+
+  useEffect(() => {
+    Aos.init({ duration: 2000 });
+  }, []);
 
   const featuredRooms = async () => {
     return await axios.get("/rooms");
@@ -42,7 +49,9 @@ const FeaturedRooms = () => {
 
   return (
     <div className="text-center">
-      <h1 className="text-3xl font-bold uppercase">Our Featured Rooms</h1>
+      <h1 className="text-3xl font-bold uppercase" data-aos="zoom-in">
+        Our Featured Rooms
+      </h1>
       <div className="mt-5 hidden md:block">
         <Swiper
           spaceBetween={0}

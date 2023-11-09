@@ -46,7 +46,6 @@ const MyBookings = () => {
     const dayDifference = Math.floor(
       (new Date(bookingDate) - newDate) / (1000 * 60 * 60 * 24)
     );
-    console.log(dayDifference);
 
     if (dayDifference > 1) {
       Swal.fire({

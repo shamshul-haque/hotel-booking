@@ -1,3 +1,6 @@
+import Aos from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 import { AiTwotoneMail } from "react-icons/ai";
 import {
   BiLogoFacebook,
@@ -13,6 +16,10 @@ import footer_bg from "../../assets/images/footer_bg.jpg";
 import footer_logo from "../../assets/logo/footer_logo.png";
 
 const Footer = () => {
+  useEffect(() => {
+    Aos.init({ duration: 2000 });
+  }, []);
+
   return (
     <div>
       <div
@@ -26,7 +33,7 @@ const Footer = () => {
         <div className="hero-overlay bg-primary bg-opacity-90">
           <div className="px-5 md:px-10 lg:px-20 py-5 md:py-10 lg:py-20 text-white">
             <div className="flex flex-col md:flex-row justify-between gap-5 md:gap-20">
-              <div className="flex-1">
+              <div className="flex-1" data-aos="flip-right">
                 <img
                   src={footer_logo}
                   alt="footer_logo"
@@ -40,7 +47,7 @@ const Footer = () => {
                   {`Cox's`} Bazar.
                 </p>
               </div>
-              <div className="flex-1 mt-5 text-center">
+              <div className="flex-1 mt-5 text-center" data-aos="zoom-in">
                 <h2 className="text-3xl font-bold">About Us</h2>
                 <div className="flex flex-col mt-5 md:mt-10 space-y-3">
                   <Link
@@ -63,7 +70,7 @@ const Footer = () => {
                   </Link>
                 </div>
               </div>
-              <div className="flex-1 mt-5">
+              <div className="flex-1 mt-5" data-aos="flip-left">
                 <h2 className="text-3xl font-bold text-center">Reach Out</h2>
                 <div className="mt-5 md:mt-10 space-y-3">
                   <div className="flex items-center gap-3">

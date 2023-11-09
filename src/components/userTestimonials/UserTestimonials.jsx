@@ -1,5 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
+import Aos from "aos";
+import "aos/dist/aos.css";
 import PropTypes from "prop-types";
+import { useEffect } from "react";
 import ReactStars from "react-rating-stars-component";
 import "swiper/css";
 import "swiper/css/autoplay";
@@ -10,6 +13,10 @@ import useAxios from "../../hooks/useAxios";
 
 const UserTestimonials = () => {
   const axios = useAxios();
+
+  useEffect(() => {
+    Aos.init({ duration: 2000 });
+  }, []);
 
   const userTestimonials = async () => {
     return await axios.get("/user/review");
@@ -41,11 +48,12 @@ const UserTestimonials = () => {
     );
   }
 
-  console.log(testimonials);
-
   return (
     <div className="pt-10">
-      <h1 className="text-3xl font-bold uppercase text-center">
+      <h1
+        className="text-3xl font-bold uppercase text-center"
+        data-aos="zoom-in"
+      >
         User Testimonials
       </h1>
       <div className="mt-5">

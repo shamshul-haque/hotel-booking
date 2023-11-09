@@ -48,7 +48,6 @@ const RoomDetails = () => {
   const handleBooking = async (e) => {
     e.preventDefault();
     const date = new Date(selectDate);
-    console.log(date);
     const email = user?.email;
     const image = item?.data?.img;
     const name = item?.data?.name;
