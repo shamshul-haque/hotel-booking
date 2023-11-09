@@ -3,6 +3,7 @@ import FeaturedRooms from "../components/featuredRooms/FeaturedRooms";
 import Mapping from "../components/mapping/Mapping";
 import Slider from "../components/slider/Slider";
 import Subscribe from "../components/subscribe/Subscribe";
+import UserTestimonials from "../components/userTestimonials/UserTestimonials";
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
       <Slider />
       <FeaturedRooms />
       <Subscribe />
+      <UserTestimonials />
       <Mapping />
     </div>
   );

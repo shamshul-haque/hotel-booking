@@ -40,8 +40,6 @@ const FeaturedRooms = () => {
     );
   }
 
-  //   const selectedItems = bestCell.filter((item) => item.rating > 3);
-
   return (
     <div className="text-center">
       <h1 className="text-3xl font-bold uppercase">Our Featured Rooms</h1>

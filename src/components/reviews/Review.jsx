@@ -15,6 +15,7 @@ const Review = () => {
     const comment = form.comment.value;
     form.reset();
     const username = user?.displayName;
+    const image = user?.photoURL;
     const roomId = id;
     const timestamp = new Date();
 
@@ -23,12 +24,13 @@ const Review = () => {
       rating,
       comment,
       username,
+      image,
       timestamp,
     };
 
     try {
       await axios.post("/user/review", reviews);
-      toast.success("Thank for your review!", {
+      toast.success("Thanks for your review!", {
         position: "top-center",
         theme: "colored",
       });
