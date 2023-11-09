@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Helmet } from "react-helmet";
 import { FaCalendarAlt } from "react-icons/fa";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import useAuth from "../hooks/useAuth";
 import useAxios from "../hooks/useAxios";
@@ -106,12 +106,20 @@ const RoomDetails = () => {
             />
             <FaCalendarAlt />
           </label>
-          <button
-            onClick={handleBooking}
-            className="bg-primary hover:bg-secondary transition-all duration-500 p-2 rounded uppercase text-white font-medium"
-          >
-            Book Now
-          </button>
+          {!user ? (
+            <Link to="/login">
+              <button className="bg-primary hover:bg-secondary transition-all duration-500 p-2 rounded uppercase text-white font-medium">
+                Book Now
+              </button>
+            </Link>
+          ) : (
+            <button
+              onClick={handleBooking}
+              className="bg-primary hover:bg-secondary transition-all duration-500 p-2 rounded uppercase text-white font-medium"
+            >
+              Book Now
+            </button>
+          )}
         </div>
       </div>
     </div>
