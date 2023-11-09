@@ -51,8 +51,8 @@ const RoomDetails = () => {
     const email = user?.email;
     const image = item?.data?.img;
     const name = item?.data?.name;
-    const randomId = Math.random().toString(36).substring(2, 10);
-    const bookingDetails = { randomId, date, email, image, name };
+    const roomId = id;
+    const bookingDetails = { date, roomId, email, image, name };
 
     try {
       await axios.post("/user/create-booking", bookingDetails);
