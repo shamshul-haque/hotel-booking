@@ -75,49 +75,57 @@ const MyBookings = () => {
   };
 
   return (
-    <div className="py-10 w-full lg:w-2/3 mx-auto">
+    <div className="py-10 w-full md:w-9/12 mx-auto">
       <Helmet>
         <title>My Booking | The Luxe Haven</title>
       </Helmet>
-      {bookings?.data?.map((item) => (
-        <div
-          key={item._id}
-          className="flex items-center justify-between gap-5 mt-5"
-        >
-          <img
-            src={item.image}
-            alt="booked image"
-            className="w-20 md:w-40 rounded"
-          />
-          <div>
-            <p className="text-xs md:text-base font-bold text-center">
-              {item.name}
-            </p>
-            <p className="text-xs md:text-base text-center">
-              Booking for: {moment(item.date).format("MMM Do YY")}
-            </p>
+      <h1 className="text-3xl font-bold text-center uppercase">
+        My Booking List
+      </h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        {bookings?.data?.map((item) => (
+          <div key={item._id} className="bg-white shadow-xl p-5 rounded-xl">
+            <img
+              src={item.image}
+              alt="booked image"
+              className="h-40 w-full rounded"
+            />
+            <div className="py-4 space-y-1">
+              <p className="text-xs md:text-base font-bold text-center">
+                {item.name}
+              </p>
+              <p className="text-xs md:text-base text-center">
+                <span className="font-bold">Booking for:</span>{" "}
+                {moment(item.date).format("MMM Do YY")}
+              </p>
+            </div>
+            <div className="flex flex-col md:flex-row items-center justify-between gap-2">
+              <div>
+                <Link to={`/update-bookings/${item._id}`}>
+                  <button className="bg-primary hover:bg-secondary transition-all duration-500 p-2 rounded uppercase text-white text-xs md:text-base md:font-medium w-full">
+                    Update Date
+                  </button>
+                </Link>
+              </div>
+              <div>
+                <Link to={`/add-review/${item._id}`}>
+                  <button className="bg-primary hover:bg-secondary transition-all duration-500 p-2 rounded uppercase text-white text-xs md:text-base md:font-medium w-full">
+                    Add Review
+                  </button>
+                </Link>
+              </div>
+              <div>
+                <button
+                  onClick={() => handleDelete(item._id, item.date)}
+                  className="bg-primary hover:bg-secondary transition-all duration-500 p-2 rounded uppercase text-white text-xs md:text-base md:font-medium w-full"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
           </div>
-          <div className="flex flex-col gap-2">
-            <Link to={`/update-bookings/${item._id}`}>
-              <button className="bg-primary hover:bg-secondary transition-all duration-500 p-2 rounded uppercase text-white text-xs md:text-base md:font-medium">
-                Update Date
-              </button>
-            </Link>
-            <button
-              onClick={() => handleDelete(item._id, item.date)}
-              className="bg-primary hover:bg-secondary transition-all duration-500 p-2 rounded uppercase text-white text-xs md:text-base md:font-medium"
-            >
-              Delete
-            </button>
-            {/* <button
-              onClick={() => handleDelete(item._id)}
-              className="bg-primary hover:bg-secondary transition-all duration-500 p-2 rounded uppercase text-white text-xs md:text-base md:font-medium"
-            >
-              Delete
-            </button> */}
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };

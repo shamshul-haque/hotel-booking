@@ -6,7 +6,6 @@ import { Helmet } from "react-helmet";
 import { FaCalendarAlt } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import Review from "../components/reviews/Review";
 import useAuth from "../hooks/useAuth";
 import useAxios from "../hooks/useAxios";
 
@@ -125,7 +124,6 @@ const RoomDetails = () => {
           </div>
         </div>
       </div>
-      <Review />
     </div>
   );
 };

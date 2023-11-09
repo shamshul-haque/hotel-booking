@@ -3,6 +3,7 @@ import ReactDatePicker from "react-datepicker";
 import { Helmet } from "react-helmet";
 import { FaCalendarAlt } from "react-icons/fa";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import useAxios from "../hooks/useAxios";
 
 const UpdateBooking = () => {
@@ -13,9 +14,18 @@ const UpdateBooking = () => {
   const handleUpdateDate = async (e) => {
     e.preventDefault();
     const date = new Date(selectDate);
-    return await axios.put(`/user/manage-booking/${id}`, {
-      date: date,
-    });
+
+    try {
+      await axios.put(`/user/manage-booking/${id}`, {
+        date: date,
+      });
+      toast.success("Updated your booking date!", {
+        position: "top-center",
+        theme: "colored",
+      });
+    } catch {
+      console.log("error");
+    }
   };
 
   return (
