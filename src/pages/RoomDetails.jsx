@@ -51,7 +51,8 @@ const RoomDetails = () => {
     const email = user?.email;
     const image = item?.data?.img;
     const name = item?.data?.name;
-    const bookingDetails = { date, email, image, name };
+    const randomId = Math.random().toString(36).substring(2, 10);
+    const bookingDetails = { randomId, date, email, image, name };
 
     try {
       await axios.post("/user/create-booking", bookingDetails);
@@ -97,8 +98,8 @@ const RoomDetails = () => {
               {item?.data?.special_offers}
             </p>
           </div>
-          <div className="flex justify-center gap-5">
-            <label className="flex items-center border border-primary hover:border-secondary rounded cursor-pointer px-3">
+          <div className="flex flex-col md:flex-row justify-center gap-5 p-5">
+            <label className="flex items-center justify-between border border-primary hover:border-secondary rounded cursor-pointer px-3">
               <DatePicker
                 selected={selectDate}
                 onChange={(date) => setSelectDate(date)}

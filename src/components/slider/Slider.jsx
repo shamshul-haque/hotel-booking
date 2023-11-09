@@ -28,11 +28,11 @@ const Slider = () => {
             }}
             className="h-[80vh] flex items-center"
           >
-            <div className="text-center mx-auto text-white space-y-5">
-              <h2 className="text-2xl font-bold text-white p-5 md:p-0">
+            <div className="text-center mx-auto text-white md:space-y-5">
+              <h2 className="text-2xl font-bold text-white md:p-5 p-0">
                 WELCOME TO LUXE HAVEN
               </h2>
-              <p className="px-20 pb-10">Long Weekend upto 50% off!</p>
+              <p className="md:px-20 md:pb-10">Long Weekend upto 50% off!</p>
               <Link to="/rooms">
                 <button className="bg-primary hover:bg-secondary transition-all duration-500 p-2 rounded uppercase text-white font-medium">
                   Book Now
@@ -51,11 +51,11 @@ const Slider = () => {
             }}
             className="h-[80vh] flex items-center"
           >
-            <div className="text-center mx-auto space-y-5">
-              <h2 className="text-2xl font-bold text-white p-5 md:p-0">
+            <div className="text-center mx-auto md:space-y-5">
+              <h2 className="text-2xl font-bold text-white md:p-5 p-0">
                 Select Your Room Today!
               </h2>
-              <p className="px-20 pb-10 text-white">
+              <p className="md:px-20 md:pb-10 text-white">
                 Long Weekend upto 50% off!
               </p>
               <Link to="/rooms">

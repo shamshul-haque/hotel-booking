@@ -16,11 +16,11 @@ const AddReview = () => {
     form.reset();
     const username = user?.displayName;
     const image = user?.photoURL;
-    const roomId = id;
+    const randomId = id;
     const timestamp = new Date();
 
     const reviews = {
-      roomId,
+      randomId,
       rating,
       comment,
       username,

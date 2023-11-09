@@ -23,7 +23,7 @@ const DropdownManus = () => {
   };
 
   return (
-    <div className="dropdown dropdown-end">
+    <div className="dropdown dropdown-end z-50">
       <label tabIndex={0} className="btn m-1">
         <AiOutlineMenu className="text-xl" />
       </label>

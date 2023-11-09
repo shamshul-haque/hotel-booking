@@ -97,6 +97,7 @@ const MyBookings = () => {
                 <span className="font-bold">Booking for:</span>{" "}
                 {moment(item.date).format("MMM Do YY")}
               </p>
+              <p>{item.randomId}</p>
             </div>
             <div className="flex flex-col md:flex-row items-center justify-between gap-2">
               <div>

@@ -1,4 +1,4 @@
-# PhoneHub
+# Booking Hotel
 
 Click here to embark on a journey of innovation and connectivity: [booking-hotel](https://hotel-booking-57ae2.web.app/)
 
@@ -21,6 +21,10 @@ This repository outlines the key features for a hotel booking website.
 ## Add Review of Booked Room
 
 - Enable users to leave reviews and ratings for rooms they have booked, enhancing the website's transparency and credibility. Implement a review system with options to rate various aspects of their stay, such as cleanliness, staff friendliness, and overall experience.
+
+## Update Booking Date
+
+- Allow users to update their booking dates seamlessly. Provide an intuitive interface for users to modify their reservation details, taking into account room availability and any applicable date change policies.
 
 ## Dynamic Page Title
 
