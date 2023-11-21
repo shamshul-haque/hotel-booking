@@ -9,8 +9,6 @@ const Rooms = () => {
   const axios = useAxios();
   const [asc, setAsc] = useState(true);
   const [search, setSearch] = useState("");
-  // const [min, setMin] = useState();
-  // const [max, setMax] = useState();
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -19,7 +17,6 @@ const Rooms = () => {
   };
 
   const getRooms = async () => {
-    // return await axios.get(`/rooms?sort=${asc ? "asc" : "desc"}`);
     return await axios.get(
       `/rooms?sort=${asc ? "asc" : "desc"}&search=${search}`
     );
@@ -31,7 +28,6 @@ const Rooms = () => {
     isError,
     error,
   } = useQuery({
-    // queryKey: ["rooms", asc],
     queryKey: ["rooms", asc, search],
     queryFn: getRooms,
   });
