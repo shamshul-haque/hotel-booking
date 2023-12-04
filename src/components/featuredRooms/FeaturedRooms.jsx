@@ -55,7 +55,7 @@ const FeaturedRooms = () => {
       <div className="mt-5 hidden md:block">
         <Swiper
           spaceBetween={0}
-          slidesPerView={3}
+          slidesPerView={4}
           modules={[Navigation, Autoplay]}
           navigation
           autoplay={{ delay: 1000, disableOnInteraction: true }}
